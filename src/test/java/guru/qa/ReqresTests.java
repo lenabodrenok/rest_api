@@ -3,7 +3,7 @@ package guru.qa;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static guru.qa.ReqresUri.*;
+import static guru.qa.ReqresEndpoints.*;
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
@@ -12,7 +12,7 @@ public class ReqresTests {
 
     @BeforeAll
     static void testBase() {
-        RestAssured.baseURI = "https://reqres.in/";
+        RestAssured.baseURI = "https://reqres.in/api";
     }
 
     @Test
