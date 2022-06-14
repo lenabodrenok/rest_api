@@ -19,7 +19,7 @@ public class TestBase {
     static void setUp() {
         CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
 
-        String selenoid = System.getProperty("selenoid.autotests.cloud/wd/hub");
+        String selenoid = System.getProperty("selenoidUrl", "selenoid.autotests.cloud/wd/hub");
 
         Configuration.baseUrl = System.getProperty("baseUrl", "http://demowebshop.tricentis.com");
         RestAssured.baseURI = System.getProperty("baseURI", "http://demowebshop.tricentis.com");
