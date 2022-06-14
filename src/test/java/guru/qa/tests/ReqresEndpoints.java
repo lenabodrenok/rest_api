@@ -1,4 +1,4 @@
-package guru.qa;
+package guru.qa.tests;
 
 public class ReqresEndpoints {
 

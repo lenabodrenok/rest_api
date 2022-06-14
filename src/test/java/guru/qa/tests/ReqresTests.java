@@ -1,9 +1,9 @@
-package guru.qa;
+package guru.qa.tests;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static guru.qa.ReqresEndpoints.*;
+import static guru.qa.tests.ReqresEndpoints.*;
 import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
