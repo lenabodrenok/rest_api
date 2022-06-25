@@ -120,4 +120,36 @@ public class DemowebshopTests extends TestBase {
         step("Verify successful authorization", () ->
                 $(".account").shouldHave(text(login)));
     }
+
+    @Test
+    @DisplayName("Adding item to shopping cart (UI + API)")
+    void shoppingCartTest() {
+        step("Open minimal content, because cookie can be set when site is opened", () ->
+                open("/Themes/DefaultClean/Content/images/logo.png"));
+        step("Get cookie by api and set it to browser", () -> {
+            String authCookieValue = given()
+                    .filter(withCustomTemplates())
+                    .contentType("application/x-www-form-urlencoded")
+                    .formParam("Email", login)
+                    .formParam("Password", password)
+                    .log().all()
+                    .when()
+                    .post("/login")
+                    .then()
+                    .log().all()
+                    .statusCode(302)
+                    .extract().cookie(authCookieName);
+            step("Set cookie to browser", () -> {
+                Cookie authCookie = new Cookie(authCookieName, authCookieValue);
+                WebDriverRunner.getWebDriver().manage().addCookie(authCookie);
+            });
+        });
+        step("Check items in shopping cart", () ->
+                given()
+                        .when()
+                        .post("/cart")
+                        .then()
+                        .log().body()
+                        .extract().body().equals("Blue Jeans"));
+    }
 }
